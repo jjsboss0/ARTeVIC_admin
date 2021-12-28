@@ -1,0 +1,59 @@
+{% extends "app/base_site.html" %}
+{% block title %} Dashboard 1 {% endblock title %}
+{% block stylesheets %}
+  {{ block.super }}
+{% endblock stylesheets %}
+{% load static %}
+
+{% block content %}
+<div class="right_col" role="main">
+  <table class="tg">
+    <thead>
+      <tr>
+        <th class="tg-0pky">NO.</th>
+        <th class="tg-0pky">가입일</th>
+        <th class="tg-0pky">이메일</th>
+        <th class="tg-0pky">회원명</th>
+        <th class="tg-0pky">전화번호</th>
+        <th class="tg-0pky">주소</th>
+        <th class="tg-0pky">회원상태</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      {% for i in userinfo %}
+      <tr onclick="userDetailFn({{ i.id }})">
+        <td>{{ i.id }}</td>  <!-- 일단 테스트로 id에다가 넣음 나중에 tr로 옮겨야함 -->
+        <td>{{ i.date_joined }}</td>
+        <td>{{ i.username }}</td>
+        <td>{{ i.name }}</td>
+        <td>{{ i.phone }}</td>
+        <td>{{ i.addr2 }} {{ i.addr3 }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<form name="userManageForm">
+  {% csrf_token %}
+  <input type="hidden" id="userManageFormUserID" name="userID" value="">
+</form>
+
+<script type="text/javascript">
+  function userDetailFn(userID) {
+    $('#userManageFormUserID').val(userID)
+    var frm = document.userManageForm;
+    frm.action = "{% url 'userDetailHtml' %}"
+    frm.method = "POST";
+    frm.submit();
+  }
+</script>
+
+
+{% endblock content %}
+
+{% block javascripts %}
+  {{ block.super}}
+
+{% endblock javascripts %}

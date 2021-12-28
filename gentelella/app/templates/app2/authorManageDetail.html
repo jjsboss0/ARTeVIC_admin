@@ -1,0 +1,55 @@
+{% extends "app/base_site.html" %}
+{% block title %} Dashboard 1 {% endblock title %}
+{% block stylesheets %}
+  {{ block.super }}
+{% endblock stylesheets %}
+{% load static %}
+
+
+
+{% block content %}
+<div class="right_col" role="main">
+  <div style="float:left">
+    <h4>[작가 정보]</h4>
+    <p>작가 이메일 : {{ userinfo.username }}</p>
+    <p>작가명 : {{ userinfo.name }}</p>
+    <p>가입일 : {{ userinfo.date_joined }}</p>
+    <p>전화 번호 : {{ userinfo.phone }}</p>
+    <p>주소 : {{ userinfo.addr2 }} {{ userinfo.addr3 }}</p>
+
+  </div>
+  <div style="float:center">
+    <h4>[작가 자산]</h4>
+      <p>이더 주소 : {{ userinfo.ethAddr }}</p>
+      <p>VIC 주소 : {{ userinfo.vicAddr }}</p>
+  </div>
+
+</div>
+{% endblock content %}
+
+
+{% block javascripts %}
+  {{ block.super}}
+  <!-- Chart.js -->
+  <script src="/static/vendors/Chart.js/dist/Chart.min.js"></script>
+  <!-- gauge.js -->
+  <script src="/static/vendors/gauge.js/dist/gauge.min.js"></script>
+  <!-- Skycons -->
+  <script src="/static/vendors/skycons/skycons.js"></script>
+  <!-- Flot -->
+  <script src="/static/vendors/Flot/jquery.flot.js"></script>
+  <script src="/static/vendors/Flot/jquery.flot.pie.js"></script>
+  <script src="/static/vendors/Flot/jquery.flot.time.js"></script>
+  <script src="/static/vendors/Flot/jquery.flot.stack.js"></script>
+  <script src="/static/vendors/Flot/jquery.flot.resize.js"></script>
+  <!-- Flot plugins -->
+  <script src="/static/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+  <script src="/static/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+  <script src="/static/vendors/flot.curvedlines/curvedLines.js"></script>
+  <!-- DateJS -->
+  <script src="/static/vendors/DateJS/build/date.js"></script>
+  <!-- JQVMap -->
+  <script src="/static/vendors/jqvmap/dist/jquery.vmap.js"></script>
+  <script src="/static/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+  <script src="/static/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+{% endblock javascripts %}
